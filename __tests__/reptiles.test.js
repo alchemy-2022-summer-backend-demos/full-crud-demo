@@ -17,7 +17,7 @@ describe('reptile routes', () => {
         genus: 'Alligator',
         family: 'Alligatoridae',
       },
-      { id: '2', name: 'Green Iguana', genus: 'Iguana', family: 'Iguanidae' },
+      { id: '2', name: 'Green Igana', genus: 'Iguana', family: 'Iguanidae' },
       {
         id: '3',
         name: 'American Crocodile',
@@ -50,6 +50,22 @@ describe('reptile routes', () => {
     expect(resp.body.genus).toEqual('Heloderma');
     expect(resp.body.family).toEqual('Helodermatidae');
     expect(resp.body.id).not.toBeUndefined();
+  });
+
+  it('PUT /reptiles/:id should update reptile', async () => {
+    const resp = await request(app)
+      .put('/reptiles/2')
+      .send({ name: 'Green Iguana' });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.name).toEqual('Green Iguana');
+  });
+
+  it('DELETE /reptiles/:id should delete a reptile', async () => {
+    const resp = await request(app).delete('/reptiles/2');
+    expect(resp.status).toEqual(200);
+
+    const { body } = await request(app).get('/reptiles/2');
+    expect(body).toEqual('');
   });
 
   afterAll(() => {
