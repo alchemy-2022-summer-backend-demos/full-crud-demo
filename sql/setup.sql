@@ -13,5 +13,4 @@ CREATE table reptiles (
 INSERT INTO reptiles (name, genus, family) VALUES
 ('Aligator','Alligator','Alligatoridae'),
 ('Green Iguana','Iguana','Iguanidae'),
-('American Crocodile','Crocodylus','Crocodylidae'),
-('Gila Monster','Heloderma','Helodermatidae');
+('American Crocodile','Crocodylus','Crocodylidae');
