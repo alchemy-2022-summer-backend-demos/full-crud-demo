@@ -39,6 +39,19 @@ describe('reptile routes', () => {
     });
   });
 
+  it('POST /reptiles should create a new reptile', async () => {
+    const resp = await request(app).post('/reptiles').send({
+      name: 'Gila Monster',
+      genus: 'Heloderma',
+      family: 'Helodermatidae',
+    });
+    expect(resp.status).toEqual(200);
+    expect(resp.body.name).toEqual('Gila Monster');
+    expect(resp.body.genus).toEqual('Heloderma');
+    expect(resp.body.family).toEqual('Helodermatidae');
+    expect(resp.body.id).not.toBeUndefined();
+  });
+
   afterAll(() => {
     pool.end();
   });
